@@ -11,3 +11,7 @@ crypto/smartcont/auto/
 test/regression-tests.cache/
 *.swp
 **/*build*/
+
+# Visual Studio specific
+.vs
+CMakeSettings.json

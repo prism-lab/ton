@@ -15,3 +15,6 @@ test/regression-tests.cache/
 # Visual Studio specific
 .vs
 CMakeSettings.json
+
+# CLion specific
+.idea

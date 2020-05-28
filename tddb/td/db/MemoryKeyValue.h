@@ -22,6 +22,18 @@
 #include <map>
 
 namespace td {
+#ifdef _MSC_VER
+/*  Workaround for `td:size_t` on MSVC compiler.
+ *  GCC is OK without this statement at least on linux.
+ *  See /crypto/test/test-db.cpp for example.
+ */
+  #if defined(_WIN64)
+    typedef unsigned __int64 size_t;
+  #else
+    typedef unsigned int size_t;
+  #endif
+#endif
+
 class MemoryKeyValue : public KeyValue {
  public:
   Result<GetStatus> get(Slice key, std::string &value) override;

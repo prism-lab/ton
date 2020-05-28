@@ -59,6 +59,10 @@ target_include_directories(tonlib PUBLIC
 target_link_libraries(tonlib PRIVATE tdactor adnllite tl_lite_api tl-lite-utils ton_crypto ton_block lite-client-common smc-envelope)
 target_link_libraries(tonlib PUBLIC tdutils tl_tonlib_api)
 
+if (MSVC)
+  set_target_properties(tonlib PROPERTIES COMPILE_FLAGS -bigobj)
+endif()
+
 if (TONLIB_ENABLE_JNI AND NOT ANDROID) # jni is available by default on Android
   if (NOT JNI_FOUND)
     find_package(JNI REQUIRED)

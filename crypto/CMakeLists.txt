@@ -422,7 +422,7 @@ target_include_directories(adjust-block PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
 target_link_libraries(adjust-block PUBLIC ton_crypto fift-lib ton_block)
 if (WINGETOPT_FOUND)
-  target_link_libraries_system(dump-block wingetopt)
+  target_link_libraries_system(adjust-block wingetopt)
 endif()
 
 add_executable(test-weight-distr block/test-weight-distr.cpp)

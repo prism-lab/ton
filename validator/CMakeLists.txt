@@ -200,3 +200,7 @@ target_link_libraries(validator-hardfork PRIVATE tdutils tdactor adnl rldp tl_ap
 
 target_link_libraries(full-node PRIVATE tdutils tdactor adnl rldp tl_api dht tdfec
   overlay catchain validatorsession ton_crypto ton_block ton_db)
+
+if (MSVC)
+  set_target_properties(validator PROPERTIES COMPILE_FLAGS -bigobj)
+endif()

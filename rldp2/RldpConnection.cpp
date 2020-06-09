@@ -3,6 +3,7 @@
 #include "td/utils/overloaded.h"
 #include "td/utils/Random.h"
 #include "td/utils/tl_helpers.h"
+#include "td/utils/sizet.cpp"
 
 #include "tl-utils/tl-utils.hpp"
 #include "auto/tl/ton_api.h"

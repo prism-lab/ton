@@ -2,6 +2,7 @@
 
 #include "td/utils/optional.h"
 #include "td/utils/Slice.h"
+#include "td/utils/sizet.cpp"
 #include "vm/cells.h"
 
 #include "Bitset.h"

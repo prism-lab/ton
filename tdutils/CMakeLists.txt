@@ -252,6 +252,8 @@ set(TDUTILS_SOURCE
   td/utils/utf8.h
   td/utils/Variant.h
   td/utils/VectorQueue.h
+
+  td/utils/sizet.cpp
 )
 
 if (TDUTILS_MIME_TYPE)

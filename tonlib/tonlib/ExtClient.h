@@ -61,6 +61,9 @@ class ExtClient {
   void with_last_block(td::Promise<LastBlockState> promise);
   void with_last_config(td::Promise<LastConfigState> promise);
 
+  /*
+   * Sends query to liteserver.
+   */
   template <class QueryT>
   void send_query(QueryT query, td::Promise<typename QueryT::ReturnType> promise, td::int32 seq_no = -1) {
     auto raw_query = ton::serialize_tl_object(&query, true);

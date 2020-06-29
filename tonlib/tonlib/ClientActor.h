@@ -23,13 +23,48 @@
 #include "auto/tl/tonlib_api.h"
 
 namespace tonlinb {
+
+/**
+ * This is a low-level Actor interface for interaction with TonLib. The interface is a lot more flexible than
+ * the Client interface, however, for most usages the Client interface should be sufficient.
+ */
 class ClientActor : public td::actor::Actor {
  public:
+
+  /**
+   * Creates a ClientActor using the specified callback.
+   * \param[in] callback Callback for outgoing notifications from TonLib.
+   */
   explicit ClientActor(td::unique_ptr<TonlibCallback> callback);
+
+  /**
+   * Sends one request to TonLib. The answer will be received via callback.
+   * \param[in] id Request identifier, must be positive.
+   * \param[in] request The request.
+   */
   void request(td::uint64 id, tonlib_api::object_ptr<tonlib_api::Function> request);
+
+  /**
+ * Synchronously executes a TonLib request. Only a few requests can be executed synchronously.
+ * May be called from any thread.
+ * \param[in] request Request to the TonLib.
+ * \return The request response.
+ */
   static tonlib_api::object_ptr<tonlib_api::Object> execute(tonlib_api::object_ptr<tonlib_api::Function> request);
+
+  /**
+   * Destroys the ClientActor and the TonLib instance.
+   */
   ~ClientActor();
+
+  /**
+   * Move constructor.
+   */
   ClientActor(ClientActor&& other);
+
+  /**
+   * Move assignment operator.
+   */
   ClientActor& operator=(ClientActor&& other);
 
   ClientActor(const ClientActor& other) = delete;

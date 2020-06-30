@@ -47,9 +47,11 @@ target_link_libraries(storage-cli storage overlay tdutils tdactor adnl tl_api dh
   rldp rldp2 catchain validatorsession full-node validator ton_validator validator
   fift-lib memprof terminal ${JEMALLOC_LIBRARIES})
 
-set(STORAGE_TEST_SOURCE
-  ${CMAKE_CURRENT_SOURCE_DIR}/test/storage.cpp
-  PARENT_SCOPE
-)
+# FIXME:
+# set(STORAGE_TEST_SOURCE
+#   ${CMAKE_CURRENT_SOURCE_DIR}/test/storage.cpp
+#   PARENT_SCOPE
+# )
+
 # Do not install it yet
 #install(TARGETS storage-cli RUNTIME DESTINATION bin)

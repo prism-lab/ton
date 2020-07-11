@@ -315,7 +315,7 @@ add_executable(pow-miner util/pow-miner.cpp)
 target_link_libraries(pow-miner PRIVATE ton_crypto ton_block pow-miner-lib)
 
 if (WINGETOPT_FOUND)
-  target_link_libraries_system(fift wingetopt)
+  target_link_libraries_system(pow-miner wingetopt)
 endif()
 
 add_library(ton_block ${BLOCK_SOURCE})

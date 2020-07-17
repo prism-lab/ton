@@ -5,3 +5,18 @@ target_link_libraries(adjust-block PUBLIC ton_crypto fift-lib ton_block)
 if (WINGETOPT_FOUND)    # Passed here from the main CMakeLists.txt file.
     target_link_libraries_system(adjust-block wingetopt)
 endif()
+
+add_executable(create-state create-state.cpp)
+target_link_libraries(create-state PUBLIC ton_crypto fift-lib ton_block)
+if (TONLIB_COMPILE)
+    target_link_libraries(create-state PUBLIC tonlib)
+endif()
+if (WINGETOPT_FOUND)
+    target_link_libraries_system(create-state wingetopt)
+endif()
+
+add_executable(dump-block dump-block.cpp)
+target_link_libraries(dump-block PUBLIC ton_crypto fift-lib ton_block)
+if (WINGETOPT_FOUND)
+    target_link_libraries_system(dump-block wingetopt)
+endif()

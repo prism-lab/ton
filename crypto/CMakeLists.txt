@@ -400,30 +400,6 @@ if (NOT CMAKE_CROSSCOMPILING)
   add_dependencies(smc-envelope gen_fif)
 endif()
 
-add_executable(create-state block/create-state.cpp)
-target_include_directories(create-state PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
-if (INTERNAL_COMPILE)
-  target_link_libraries(create-state PUBLIC ton_crypto fift-lib ton_block tonlib)
-else()
-  if (TONLIB_COMPILE) 
-    target_link_libraries(create-state PUBLIC ton_crypto fift-lib ton_block tonlib)
-  else()
-    target_link_libraries(create-state PUBLIC ton_crypto fift-lib ton_block)
-  endif()
-endif()
-if (WINGETOPT_FOUND)
-  target_link_libraries_system(create-state wingetopt)
-endif()
-
-add_executable(dump-block block/dump-block.cpp)
-target_include_directories(dump-block PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
-target_link_libraries(dump-block PUBLIC ton_crypto fift-lib ton_block)
-if (WINGETOPT_FOUND)
-  target_link_libraries_system(dump-block wingetopt)
-endif()
-
 add_executable(test-weight-distr block/test-weight-distr.cpp)
 target_include_directories(test-weight-distr PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)

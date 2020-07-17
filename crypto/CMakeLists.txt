@@ -424,14 +424,6 @@ if (WINGETOPT_FOUND)
   target_link_libraries_system(dump-block wingetopt)
 endif()
 
-add_executable(adjust-block block/adjust-block.cpp)
-target_include_directories(adjust-block PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
-target_link_libraries(adjust-block PUBLIC ton_crypto fift-lib ton_block)
-if (WINGETOPT_FOUND)
-  target_link_libraries_system(adjust-block wingetopt)
-endif()
-
 add_executable(test-weight-distr block/test-weight-distr.cpp)
 target_include_directories(test-weight-distr PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)

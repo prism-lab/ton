@@ -96,7 +96,7 @@ endif()
 #add_subdirectory(third-party/libcuckoo EXCLUDE_FROM_ALL)
 #add_subdirectory(third-party/junction EXCLUDE_FROM_ALL)
 
-if (WIN32)
+if (WIN32) #True on windows systems including win64.
   message("Add wingetopt")
   add_subdirectory(third-party/wingetopt EXCLUDE_FROM_ALL)
   set(WINGETOPT_FOUND 1)
@@ -393,6 +393,7 @@ add_subdirectory(dht-server)
 add_subdirectory(utils)
 add_subdirectory(http)
 add_subdirectory(rldp-http-proxy)
+add_subdirectory(apps)
 endif()
 #END internal
 

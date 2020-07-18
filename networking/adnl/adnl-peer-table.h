@@ -23,8 +23,8 @@
 
 #include "adnl.h"
 #include "utils.hpp"
-#include "adnl/adnl-query.h"
-#include "adnl/adnl-db.h"
+#include "adnl-query.h"
+#include "adnl-db.h"
 #include "common/io.hpp"
 
 #include "adnl-packet.h"

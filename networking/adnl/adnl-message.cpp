@@ -16,7 +16,7 @@
 
     Copyright 2017-2020 Telegram Systems LLP
 */
-#include "adnl/adnl-message.h"
+#include "adnl-message.h"
 #include "auto/tl/ton_api.hpp"
 #include "td/utils/overloaded.h"
 

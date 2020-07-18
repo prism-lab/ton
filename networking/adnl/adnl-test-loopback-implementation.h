@@ -18,7 +18,7 @@
 */
 #pragma once
 
-#include "adnl/adnl.h"
+#include "adnl.h"
 #include "td/utils/Random.h"
 
 #include <set>

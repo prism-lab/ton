@@ -25,9 +25,9 @@
 
     Copyright 2017-2020 Telegram Systems LLP
 */
-#include "adnl/adnl-network-manager.h"
-#include "adnl/adnl-peer-table.h"
-#include "adnl/utils.hpp"
+#include "networking/adnl/adnl-network-manager.h"
+#include "networking/adnl/adnl-peer-table.h"
+#include "networking/adnl/utils.hpp"
 #include "keys/encryptor.h"
 #include "td/utils/Time.h"
 #include "td/utils/format.h"

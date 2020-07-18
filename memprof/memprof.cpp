@@ -17,7 +17,7 @@
     Copyright 2017-2020 Telegram Systems LLP
 */
 #undef NDEBUG
-#include "memprof/memprof.h"
+#include "memprof.h"
 
 #include "td/utils/port/platform.h"
 

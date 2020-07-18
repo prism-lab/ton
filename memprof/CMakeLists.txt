@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
 set(MEMPROF_SOURCE
-  memprof/memprof.cpp
-  memprof/memprof.h
+        memprof.cpp
+        memprof.h
 )
 
 # memprof - simple library for memory usage profiling

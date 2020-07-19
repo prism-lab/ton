@@ -6,8 +6,8 @@ endif()
 
 
 set(VALIDATOR_ENGINE_SOURCE
-  validator-engine.hpp
-  validator-engine.cpp
+        validator-engine.hpp
+        validator-engine.cpp
 )
 
 add_executable(validator-engine ${VALIDATOR_ENGINE_SOURCE})

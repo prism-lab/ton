@@ -27,6 +27,6 @@ if (NOT TON_ONLY_TONLIB)
     add_subdirectory(validator-session)
     add_subdirectory(validator)
     add_subdirectory(storage)
-    add_subdirectory(http)
+    add_subdirectory(networking/http)
 endif()
 #END internal

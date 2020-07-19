@@ -384,7 +384,6 @@ add_subdirectory(storage)
 add_subdirectory(validator-engine)
 add_subdirectory(validator-engine-console)
 add_subdirectory(http)
-add_subdirectory(rldp-http-proxy)
 add_subdirectory(apps)
 endif()
 #END internal

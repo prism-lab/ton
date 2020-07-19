@@ -6,8 +6,8 @@ endif()
 
 
 set (DHT_SERVER_SOURCE
-  dht-server.cpp
-  dht-server.hpp
+        dht-server.cpp
+        dht-server.hpp
 )
 
 add_executable (dht-server ${DHT_SERVER_SOURCE})

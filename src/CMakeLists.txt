@@ -9,7 +9,6 @@ add_subdirectory(tdtl)
 add_subdirectory(tl)
 add_subdirectory(terminal)
 add_subdirectory(keys)
-add_subdirectory(tl-utils)
 add_subdirectory(networking)
 add_subdirectory(crypto)
 

@@ -53,3 +53,5 @@ target_include_directories(tl_tonlib_api_json PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../crypto/>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/generate> )
+
+add_subdirectory(utils)

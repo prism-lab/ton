@@ -355,8 +355,8 @@ if (TON_USE_ROCKSDB)
 endif()
 
 add_subdirectory(src)
-add_subdirectory(apps)
-add_subdirectory(test)
+#add_subdirectory(apps)
+#add_subdirectory(test)
 
 if (NOT CMAKE_CROSSCOMPILING)
   if (TDUTILS_MIME_TYPE)

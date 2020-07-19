@@ -7,3 +7,5 @@ Used by executables: `create-hardfork`, `dht-server`, `storage-cli`, `validator-
 ## terminal
 Просто io либа чтобы работать с терминалом.
 
+## ton
+Вообще нипанятна к чему оно принадлежит.

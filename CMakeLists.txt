@@ -365,7 +365,6 @@ add_subdirectory(keys)
 add_subdirectory(tl-utils)
 add_subdirectory(networking)
 add_subdirectory(crypto)
-add_subdirectory(lite-client)
 
 #BEGIN tonlib
 add_subdirectory(tonlib)

@@ -22,3 +22,9 @@ target_link_libraries(dump-block PUBLIC ton_crypto fift-lib ton_block)
 if (WINGETOPT_FOUND)
     target_link_libraries_system(dump-block wingetopt)
 endif()
+
+add_executable(create-hardfork create-hardfork.cpp)
+target_link_libraries(create-hardfork overlay tdutils tdactor adnl tl_api dht
+        rldp catchain validatorsession full-node validator-hardfork ton_validator
+        validator-hardfork fift-lib memprof ${JEMALLOC_LIBRARIES})
+install(TARGETS create-hardfork RUNTIME DESTINATION bin)

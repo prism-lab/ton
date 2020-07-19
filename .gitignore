@@ -2,12 +2,12 @@ __pycache__
 parser.out
 parsetab.py
 parsetab.pyc
-tdutils/generate/auto/
-tl/generate/auto/
+src/tdutils/generate/auto/
+src/tl/generate/auto/
 compile_commands.json
-crypto/block/block-auto.cpp
-crypto/block/block-auto.h
-crypto/smartcont/auto/
+src/crypto/block/block-auto.cpp
+src/crypto/block/block-auto.h
+src/crypto/smartcont/auto/
 test/regression-tests.cache/
 *.swp
 **/*build*/

@@ -107,7 +107,7 @@ endif()
 if (WIN32) #True on windows systems including win64.
   message("Add wingetopt")
   add_subdirectory(third-party/wingetopt EXCLUDE_FROM_ALL)
-  set(WINGETOPT_FOUND 1)
+  set(WINGETOPT_FOUND TRUE)
   message(STATUS "Use wingetopt")
 endif()
 
@@ -363,17 +363,10 @@ function(target_link_libraries_system target)
   endforeach(lib)
 endfunction(target_link_libraries_system)
 
-set(TDUTILS_MIME_TYPE OFF CACHE BOOL "Generate mime type conversion")
 if (TON_USE_ROCKSDB)
   option(TDDB_USE_ROCKSDB "Use rockdb" ON)
 endif()
 
-if (NOT CMAKE_CROSSCOMPILING)
-  if (TDUTILS_MIME_TYPE)
-    set(TDMIME_AUTO tdmime_auto)
-  endif()
-  #add_custom_target(prepare_cross_compiling DEPENDS tl_generate_common tlb_generate_block gen_fif ${TDMIME_AUTO})
-endif()
 ]]
 
 

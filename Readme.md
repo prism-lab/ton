@@ -59,6 +59,7 @@ Notice: _All of the papers above can be found in the `/docs` section of this rep
     ```
 
 ## on Windows:
+*Important note:* We only support x64. At least because of rocksdb.
 
 1. Install [Visual Studio 2019](https://visualstudio.microsoft.com/vs/downloads/) with ```Desktop development with C++``` package.
 

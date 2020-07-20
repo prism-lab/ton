@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
-project(TON VERSION 0.5 LANGUAGES C CXX)
+project(TON-Rocks
+        VERSION 0.5
+        LANGUAGES C CXX
+)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 #set(OPENSSL_USE_STATIC_LIBS TRUE)
 
@@ -18,6 +21,12 @@ if (TON_REAL_BINARY_DIR STREQUAL TON_REAL_SOURCE_DIR)
   message("  cmake ..")
   message(FATAL_ERROR "In-source build failed.")
 endif()
+
+
+#[[
+TODO: Удалить этот кусок нахуй,
+      но сперва убедиться, что `HAVE_SSE42` нигде не используется.
+##################################### это копипаст из crc32c/cmakelists.txt ##########################
 
 # HAVE_SSE42 for crc32c and rocksdb
 include(CheckCXXSourceCompiles)
@@ -45,7 +54,9 @@ int main() {
 }
 "  CRC32C_HAVE_SSE42)
 set(CMAKE_REQUIRED_FLAGS ${OLD_CMAKE_REQURED_FLAGS})
+##################################### это копипаст из crc32c/cmakelists.txt ###########################
 
+#################################### а этот кусок вообще из rocksdb/cmake
 if(NOT MSVC)
   set(CMAKE_REQUIRED_FLAGS "-msse4.2 -mpclmul")
 endif()
@@ -62,37 +73,34 @@ int main() {
 }
 " ROCKSDB_HAVE_SSE42)
 unset(CMAKE_REQUIRED_FLAGS)
-
+####################################### вот до сюда
 if (ROCKSDB_HAVE_SSE42 AND CRC32C_HAVE_SSE42)
   set(HAVE_SSE42 TRUE)
 else()
   set(HAVE_SSE42 FALSE)
 endif()
+]]
 
-#BEGIN internal
-option(TON_ONLY_TONLIB "Use \"ON\" to build only tonlib." OFF)
-if (TON_ONLY_TONLIB)
-  set(NOT_TON_ONLY_TONLIB false)
-else()
-  set(NOT_TON_ONLY_TONLIB true)
-endif()
-option(TON_USE_ROCKSDB "Use \"ON\" to enable RocksDb." ${NOT_TON_ONLY_TONLIB})
-option(TON_USE_ABSEIL "Use \"ON\" to enable Abseil." ${NOT_TON_ONLY_TONLIB})
-option(TON_USE_JEMALLOC "Use \"ON\" to enable JeMalloc." OFF)
-#END internal
 
-option(TONLIB_ENABLE_JNI "Use \"ON\" to enable JNI-compatible TonLib API.")
-option(TON_USE_ASAN "Use \"ON\" to enable AddressSanitizer." OFF)
-option(TON_USE_TSAN "Use \"ON\" to enable ThreadSanitizer." OFF)
-option(TON_USE_UBSAN "Use \"ON\" to enable UndefinedBehaviorSanitizer." OFF)
+option(TON_USE_ROCKSDB    "Use \"ON\" to enable RocksDb."                     OFF )
+option(TON_USE_ABSEIL     "Use \"ON\" to enable Abseil."                      OFF )
+option(TON_USE_JEMALLOC   "Use \"ON\" to enable JeMalloc."                    OFF )
+option(TONLIB_ENABLE_JNI  "Use \"ON\" to enable JNI-compatible TonLib API."       )
+option(TON_USE_ASAN       "Use \"ON\" to enable AddressSanitizer."            OFF )
+option(TON_USE_TSAN       "Use \"ON\" to enable ThreadSanitizer."             OFF )
+option(TON_USE_UBSAN      "Use \"ON\" to enable UndefinedBehaviorSanitizer."  OFF )
+
 set(TON_ARCH "native" CACHE STRING "Architecture, will be passed to -march=")
 
+#[[   #FIXME:
 if (TON_USE_ABSEIL)
   message("Add abseil-cpp")
   add_subdirectory(third-party/abseil-cpp EXCLUDE_FROM_ALL)
   set(ABSL_FOUND 1)
 endif()
+]]
 
+# Эти две строки пришли из тона вместе с комментами.
 #add_subdirectory(third-party/libcuckoo EXCLUDE_FROM_ALL)
 #add_subdirectory(third-party/junction EXCLUDE_FROM_ALL)
 
@@ -103,14 +111,17 @@ if (WIN32) #True on windows systems including win64.
   message(STATUS "Use wingetopt")
 endif()
 
+#[[ FIXME:
 set(CRC32C_BUILD_TESTS OFF CACHE BOOL "Build CRC32C's unit tests")
 set(CRC32C_BUILD_BENCHMARKS OFF CACHE BOOL "Build CRC32C's benchmarks")
 set(CRC32C_USE_GLOG OFF CACHE BOOL "Build CRC32C's tests with Google Logging")
 set(CRC32C_INSTALL OFF CACHE BOOL "Install CRC32C's header and library")
 message("Add crc32c")
-add_subdirectory(third-party/crc32c EXCLUDE_FROM_ALL)
+#add_subdirectory(third-party/crc32c EXCLUDE_FROM_ALL)
 set(CRC32C_FOUND 1)
+]]
 
+#[[ FIXME:
 if (TON_USE_ROCKSDB)
   if (ANDROID) 
     set(PORTABLE ON CACHE BOOL "portable")
@@ -120,9 +131,11 @@ if (TON_USE_ROCKSDB)
   set(WITH_TOOLS OFF CACHE BOOL "build with tools")
   set(FAIL_ON_WARNINGS OFF CACHE BOOL "fail on warnings")
   message("Add rocksdb")
-  add_subdirectory(third-party/rocksdb EXCLUDE_FROM_ALL)
+  #add_subdirectory(third-party/rocksdb EXCLUDE_FROM_ALL)
 endif()
+]]
 
+#[[ FIXME CHECKME LOVEME
 option(USE_COROUTINES "experimental support of coroutines" OFF)
 if (USE_COROUTINES)
   if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -327,8 +340,9 @@ endif()
 
 #Compilation database
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+]]
 
-#BEGIN internal
+#TODO: Do We really need to have latex doc or we can just convert them to something like markdown once?
 find_package(LATEX)
 if (LATEX_FOUND)
   include(UseLATEX)
@@ -338,8 +352,8 @@ if (LATEX_FOUND)
   add_latex_document(doc/fiftbase.tex TARGET_NAME fift_basic_description)
   add_latex_document(doc/catchain.tex TARGET_NAME catchain_consensus_description)
 endif()
-#END internal
 
+#[[ FIXME:
 function(target_link_libraries_system target)
   set(libs ${ARGN})
   foreach(lib ${libs})
@@ -354,15 +368,15 @@ if (TON_USE_ROCKSDB)
   option(TDDB_USE_ROCKSDB "Use rockdb" ON)
 endif()
 
-add_subdirectory(src)
-#add_subdirectory(apps)
-#add_subdirectory(test)
-
 if (NOT CMAKE_CROSSCOMPILING)
   if (TDUTILS_MIME_TYPE)
     set(TDMIME_AUTO tdmime_auto)
   endif()
-  add_custom_target(prepare_cross_compiling DEPENDS tl_generate_common tlb_generate_block gen_fif ${TDMIME_AUTO})
+  #add_custom_target(prepare_cross_compiling DEPENDS tl_generate_common tlb_generate_block gen_fif ${TDMIME_AUTO})
 endif()
+]]
 
 
+add_subdirectory(src)
+#add_subdirectory(apps)
+#add_subdirectory(test)

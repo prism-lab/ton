@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
-#add_subdirectory(tdutils)
+add_subdirectory(tdutils)
 #add_subdirectory(memprof)
 #add_subdirectory(tdactor)
 #add_subdirectory(tdnet)

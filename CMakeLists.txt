@@ -89,6 +89,7 @@ option(TONLIB_ENABLE_JNI  "Use \"ON\" to enable JNI-compatible TonLib API."     
 option(TON_USE_ASAN       "Use \"ON\" to enable AddressSanitizer."            OFF )
 option(TON_USE_TSAN       "Use \"ON\" to enable ThreadSanitizer."             OFF )
 option(TON_USE_UBSAN      "Use \"ON\" to enable UndefinedBehaviorSanitizer."  OFF )
+option(ENABLE_TESTS       "Use \"OFF\" to disable tests"                      ON  )
 
 set(TON_ARCH "native" CACHE STRING "Architecture, will be passed to -march=")
 
@@ -372,4 +373,10 @@ endif()
 
 add_subdirectory(src)
 #add_subdirectory(apps)
-#add_subdirectory(test)
+
+
+
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND ${ENABLE_TESTS})
+  enable_testing()
+  add_subdirectory(test)
+endif()

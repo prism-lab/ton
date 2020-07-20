@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
 #TESTS
+add_executable(test-tdutils test-td-main.cpp ${TDUTILS_TEST_SOURCE})
+target_link_libraries(test-tdutils PRIVATE tdutils ${CMAKE_THREAD_LIBS_INIT} memprof ${JEMALLOC_LIBRARIES})
+#target_link_libraries_system(test-tdutils absl::base absl::container absl::hash )
+#target_link_libraries_system(test-tdutils libcuckoo)
+#target_include_directories(test-tdutils PRIVATE SYSTEM ${JUNCTION_ALL_INCLUDE_DIRS})
+#target_link_libraries(test-tdutils PRIVATE ${JUNCTION_ALL_LIBRARIES})
+add_test(test-tdutils test-tdutils)
+
+#[[
 add_executable(test-ed25519 test-td-main.cpp ${ED25519_TEST_SOURCE})
 target_link_libraries(test-ed25519 PRIVATE ton_crypto)
 
@@ -118,7 +127,7 @@ if (NOT TON_ONLY_TONLIB)
 endif()
 #END internal
 
-enable_testing()
+enable_testing() #not needed in subfolder
 set(TEST_OPTIONS "--regression ${CMAKE_CURRENT_SOURCE_DIR}/regression-tests.ans --filter -Bench")
 separate_arguments(TEST_OPTIONS)
 add_test(test-ed25519-crypto crypto/test-ed25519-crypto)
@@ -150,3 +159,4 @@ if (NOT TON_ONLY_TONLIB)
 endif()
 #END internal
 
+]]

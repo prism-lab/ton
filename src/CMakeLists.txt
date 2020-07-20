@@ -11,6 +11,9 @@ if (NOT CMAKE_CROSSCOMPILING)
 endif()
 add_subdirectory(tdutils)
 
+
+
+
 #add_subdirectory(memprof)
 #add_subdirectory(tdactor)
 #add_subdirectory(tdnet)

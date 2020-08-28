@@ -5,20 +5,20 @@ if (NOT OPENSSL_FOUND)
 endif()
 
 set(DHT_SOURCE
-  dht.cpp
-  dht-remote-node.cpp
-  dht-bucket.cpp
-  dht-node.cpp
-  dht-query.cpp
-  dht-types.cpp
+        dht.cpp
+        dht-remote-node.cpp
+        dht-bucket.cpp
+        dht-node.cpp
+        dht-query.cpp
+        dht-types.cpp
 
-  dht-bucket.hpp
-  dht-in.hpp
-  dht-query.hpp
-  dht-remote-node.hpp
-  dht-types.h
-  dht.h
-  dht.hpp
+        dht-bucket.hpp
+        dht-in.hpp
+        dht-query.hpp
+        dht-remote-node.hpp
+        dht-types.h
+        dht.h
+        dht.hpp
 )
 
 add_library(dht STATIC ${DHT_SOURCE})

@@ -6,34 +6,34 @@ endif()
 
 
 set(STORAGE_SOURCE
-  LoadSpeed.cpp
-  MerkleTree.cpp
-  NodeActor.cpp
-  PeerActor.cpp
-  PeerState.cpp
-  Torrent.cpp
-  TorrentCreator.cpp
-  TorrentHeader.cpp
-  TorrentInfo.cpp
-  TorrentMeta.cpp
+        LoadSpeed.cpp
+        MerkleTree.cpp
+        NodeActor.cpp
+        PeerActor.cpp
+        PeerState.cpp
+        Torrent.cpp
+        TorrentCreator.cpp
+        TorrentHeader.cpp
+        TorrentInfo.cpp
+        TorrentMeta.cpp
 
-  Bitset.h
-  LoadSpeed.h
-  MerkleTree.h
-  NodeActor.h
-  PartsHelper.h
-  PeerActor.h
-  PeerState.h
-  SharedState.h
-  Torrent.h
-  TorrentCreator.h
-  TorrentHeader.h
-  TorrentInfo.h
-  TorrentMeta.h
+        Bitset.h
+        LoadSpeed.h
+        MerkleTree.h
+        NodeActor.h
+        PartsHelper.h
+        PeerActor.h
+        PeerState.h
+        SharedState.h
+        Torrent.h
+        TorrentCreator.h
+        TorrentHeader.h
+        TorrentInfo.h
+        TorrentMeta.h
 )
 
 set(STORAGE_CLI_SOURCE
-  storage-cli.cpp
+        storage-cli.cpp
 )
 
 add_library(storage ${STORAGE_SOURCE})

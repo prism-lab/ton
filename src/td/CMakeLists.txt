@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
+add_subdirectory(tdactor)
+add_subdirectory(tddb)
+add_subdirectory(tdfec)
+add_subdirectory(tdnet)
+add_subdirectory(tdtl)
+
+
 # There is no need for tdutils to generate mime type conversion.
 # tdutils is actually a git subrepo, so I define this statement here. Sorry.
 set(TDUTILS_MIME_TYPE OFF CACHE BOOL "Generate mime type conversion")

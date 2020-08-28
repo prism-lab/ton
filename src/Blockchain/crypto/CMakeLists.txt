@@ -143,24 +143,6 @@ set(TON_DB_SOURCE
   vm/db/TonDb.h
 )
 
-set(FIFT_SOURCE
-  fift/Dictionary.cpp
-  fift/Fift.cpp
-  fift/IntCtx.cpp
-  fift/Continuation.cpp
-  fift/SourceLookup.cpp
-  fift/utils.cpp
-  fift/words.cpp
-
-  fift/Dictionary.h
-  fift/Fift.h
-  fift/IntCtx.h
-  fift/Continuation.h
-  fift/SourceLookup.h
-  fift/utils.h
-  fift/words.h
-)
-
 set(PARSER_SOURCE
   parser/srcread.cpp
   parser/lexer.cpp
@@ -260,10 +242,6 @@ set(SMARTCONT_TEST_SOURCE
   PARENT_SCOPE
 )
 
-set(FIFT_TEST_SOURCE
-  ${CMAKE_CURRENT_SOURCE_DIR}/test/fift.cpp
-  PARENT_SCOPE
-)
 
 
 add_library(ton_crypto STATIC ${TON_CRYPTO_SOURCE})
@@ -283,17 +261,6 @@ target_link_libraries(ton_db PUBLIC tdutils tddb ton_crypto)
 add_executable(test-ed25519-crypto test/test-ed25519-crypto.cpp)
 target_include_directories(test-ed25519-crypto PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 target_link_libraries(test-ed25519-crypto PUBLIC ton_crypto)
-
-add_library(fift-lib ${FIFT_SOURCE})
-target_include_directories(fift-lib PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
-target_link_libraries(fift-lib PUBLIC ton_crypto ton_db tdutils ton_block)
-set_target_properties(fift-lib PROPERTIES OUTPUT_NAME fift)
-
-add_executable(fift fift/fift-main.cpp)
-target_link_libraries(fift PUBLIC fift-lib)
-if (WINGETOPT_FOUND)
-  target_link_libraries_system(fift wingetopt)
-endif()
 
 add_library(src_parser ${PARSER_SOURCE})
 target_include_directories(src_parser PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
@@ -414,5 +381,3 @@ if (WINGETOPT_FOUND)
   target_link_libraries_system(test-weight-distr wingetopt)
 endif()
 
-install(TARGETS fift func RUNTIME DESTINATION bin)
-install(DIRECTORY fift/lib/ DESTINATION lib/fift)

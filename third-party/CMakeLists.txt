@@ -14,20 +14,20 @@ endif()
 
 if (WIN32) #True on windows systems including win64.
     message("Add wingetopt")
-    add_subdirectory(third-party/wingetopt EXCLUDE_FROM_ALL)
+    add_subdirectory(wingetopt EXCLUDE_FROM_ALL)
     set(WINGETOPT_FOUND TRUE)
     message(STATUS "Use wingetopt")
 endif()
 
-#[[ FIXME:
+# crc32c library
 set(CRC32C_BUILD_TESTS OFF CACHE BOOL "Build CRC32C's unit tests")
 set(CRC32C_BUILD_BENCHMARKS OFF CACHE BOOL "Build CRC32C's benchmarks")
 set(CRC32C_USE_GLOG OFF CACHE BOOL "Build CRC32C's tests with Google Logging")
 set(CRC32C_INSTALL OFF CACHE BOOL "Install CRC32C's header and library")
 message("Add crc32c")
-#add_subdirectory(third-party/crc32c EXCLUDE_FROM_ALL)
+add_subdirectory(crc32c EXCLUDE_FROM_ALL)
 set(CRC32C_FOUND 1)
-]]
+
 
 #[[ FIXME:
 if (TON_USE_ROCKSDB)

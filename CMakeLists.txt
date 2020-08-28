@@ -333,6 +333,7 @@ endif()
 
 
 add_subdirectory(src)
+add_subdirectory(third-party)
 #FIXME:
 #add_subdirectory(apps)
 

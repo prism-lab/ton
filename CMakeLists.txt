@@ -331,9 +331,9 @@ if (TON_USE_ROCKSDB)
 endif()
 ]]
 
-
-add_subdirectory(src)
 add_subdirectory(third-party)
+add_subdirectory(src)
+
 #FIXME:
 #add_subdirectory(apps)
 

@@ -310,10 +310,3 @@ if (NOT CMAKE_CROSSCOMPILING)
   add_dependencies(smc-envelope gen_fif)
 endif()
 
-add_executable(test-weight-distr block/test/test-weight-distr.cpp)
-target_include_directories(test-weight-distr PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
-target_link_libraries(test-weight-distr PUBLIC ton_crypto fift-lib ton_block)
-if (WINGETOPT_FOUND)
-  target_link_libraries_system(test-weight-distr wingetopt)
-endif()

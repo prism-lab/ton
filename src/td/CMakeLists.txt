@@ -9,4 +9,8 @@ if (NOT CMAKE_CROSSCOMPILING)
     endif()
     #add_custom_target(prepare_cross_compiling DEPENDS tl_generate_common tlb_generate_block gen_fif ${TDMIME_AUTO})
 endif()
+
+#FIXME: cyka.
+set(CRC32C_FOUND 1)
+
 add_subdirectory(tdutils)

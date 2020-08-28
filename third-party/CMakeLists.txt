@@ -26,7 +26,7 @@ set(CRC32C_USE_GLOG OFF CACHE BOOL "Build CRC32C's tests with Google Logging")
 set(CRC32C_INSTALL OFF CACHE BOOL "Install CRC32C's header and library")
 message("Add crc32c")
 add_subdirectory(crc32c EXCLUDE_FROM_ALL)
-set(CRC32C_FOUND 1)
+
 
 
 #[[ FIXME:

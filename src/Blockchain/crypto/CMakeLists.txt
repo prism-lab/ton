@@ -143,16 +143,6 @@ set(TON_DB_SOURCE
   vm/db/TonDb.h
 )
 
-set(PARSER_SOURCE
-  parser/srcread.cpp
-  parser/lexer.cpp
-  parser/symtable.cpp
-
-  parser/srcread.h
-  parser/lexer.h
-  parser/symtable.h
-)
-
 set(FUNC_LIB_SOURCE
   func/keywords.cpp
   func/unify-types.cpp
@@ -234,10 +224,6 @@ target_link_libraries(ton_db PUBLIC tdutils tddb ton_crypto)
 add_executable(test-ed25519-crypto test/test-ed25519-crypto.cpp)
 target_include_directories(test-ed25519-crypto PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 target_link_libraries(test-ed25519-crypto PUBLIC ton_crypto)
-
-add_library(src_parser ${PARSER_SOURCE})
-target_include_directories(src_parser PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
-target_link_libraries(src_parser PUBLIC ton_crypto)
 
 add_executable(func func/func.cpp ${FUNC_LIB_SOURCE})
 target_include_directories(func PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
@@ -331,5 +317,3 @@ target_link_libraries(test-weight-distr PUBLIC ton_crypto fift-lib ton_block)
 if (WINGETOPT_FOUND)
   target_link_libraries_system(test-weight-distr wingetopt)
 endif()
-
-add_subdirectory(block)

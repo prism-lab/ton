@@ -35,12 +35,13 @@ target_link_libraries(ton_block PUBLIC ton_crypto tdutils tdactor tl_api)
 
 
 # Code generation:
+file(MAKE_DIRECTORY auto/)
+
 set(TURN_OFF_LSAN cd .)
 if (TON_USE_ASAN AND NOT WIN32)
     set(TURN_OFF_LSAN export LSAN_OPTIONS=detect_leaks=0)
 endif()
 
-file(MAKE_DIRECTORY auto/)
 if (NOT CMAKE_CROSSCOMPILING)
     set(GENERATE_TLB_CMD tlbc)
     add_custom_command(

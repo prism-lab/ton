@@ -5,8 +5,6 @@ parsetab.pyc
 src/tdutils/generate/auto/
 src/tl/generate/auto/
 compile_commands.json
-src/crypto/block/block-auto.cpp
-src/crypto/block/block-auto.h
 src/crypto/smartcont/auto/
 test/regression-tests.cache/
 *.swp
@@ -18,3 +16,6 @@ CMakeSettings.json
 
 # CLion specific
 .idea
+
+#Code generation:
+src/Blockchain/block/auto/

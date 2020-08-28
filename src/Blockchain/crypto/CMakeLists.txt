@@ -167,33 +167,6 @@ set(FUNC_LIB_SOURCE
   func/codegen.cpp
 )
 
-set(TLB_BLOCK_AUTO
-  ${CMAKE_CURRENT_SOURCE_DIR}/block/block-auto.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/block/block-auto.h
-)
-
-set(BLOCK_SOURCE
-  block/Binlog.h
-  block/Binlog.cpp
-  block/block.cpp
-  block/block-db.cpp
-  block/block-parse.cpp
-  block/check-proof.cpp
-  block/mc-config.cpp
-  block/output-queue-merger.cpp
-  block/transaction.cpp
-  ${TLB_BLOCK_AUTO}
-
-  block/block-binlog.h
-  block/block-db-impl.h
-  block/block-db.h
-  block/block.h
-  block/block-parse.h
-  block/check-proof.h
-  block/output-queue-merger.h
-  block/transaction.h
-)
-
 set(SMC_ENVELOPE_SOURCE
   smc-envelope/GenericAccount.cpp
   smc-envelope/HighloadWallet.cpp
@@ -291,30 +264,8 @@ if (WINGETOPT_FOUND)
   target_link_libraries_system(pow-miner wingetopt)
 endif()
 
-add_library(ton_block ${BLOCK_SOURCE})
-target_include_directories(ton_block PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/block> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
-target_link_libraries(ton_block PUBLIC ton_crypto tdutils tdactor tl_api)
-
-set(TURN_OFF_LSAN cd .)
-if (TON_USE_ASAN AND NOT WIN32)
-  set(TURN_OFF_LSAN export LSAN_OPTIONS=detect_leaks=0)
-endif()
-
 file(MAKE_DIRECTORY smartcont/auto)
 if (NOT CMAKE_CROSSCOMPILING)
-  set(GENERATE_TLB_CMD tlbc)
-  add_custom_command(
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/block
-    COMMAND ${TURN_OFF_LSAN}
-    COMMAND ${GENERATE_TLB_CMD} -o block-auto -n block::gen -z block.tlb
-    COMMENT "Generate block tlb source files"
-    OUTPUT ${TLB_BLOCK_AUTO}
-    DEPENDS tlbc block/block.tlb
-  )
-  add_custom_target(tlb_generate_block DEPENDS ${TLB_BLOCK_AUTO})
-  add_dependencies(ton_block tlb_generate_block)
-
   add_custom_target(gen_fif ALL)
   function(GenFif)
     set(options )
@@ -381,3 +332,4 @@ if (WINGETOPT_FOUND)
   target_link_libraries_system(test-weight-distr wingetopt)
 endif()
 
+add_subdirectory(block)

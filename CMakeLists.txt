@@ -343,15 +343,15 @@ endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 ]]
 
-#TODO: Do We really need to have latex doc or we can just convert them to something like markdown once?
+#TODO: Do We really need to have latex docs or we can just convert them to something like markdown once?
 find_package(LATEX)
 if (LATEX_FOUND)
   include(UseLATEX)
-  add_latex_document(doc/ton.tex TARGET_NAME ton_white_paper)
-  add_latex_document(doc/tvm.tex TARGET_NAME ton_vm_description)
-  add_latex_document(doc/tblkch.tex TARGET_NAME ton_blockchain_description)
-  add_latex_document(doc/fiftbase.tex TARGET_NAME fift_basic_description)
-  add_latex_document(doc/catchain.tex TARGET_NAME catchain_consensus_description)
+  add_latex_document(docs/ton.tex TARGET_NAME ton_white_paper)
+  add_latex_document(docs/tvm.tex TARGET_NAME ton_vm_description)
+  add_latex_document(docs/tblkch.tex TARGET_NAME ton_blockchain_description)
+  add_latex_document(docs/fiftbase.tex TARGET_NAME fift_basic_description)
+  add_latex_document(docs/catchain.tex TARGET_NAME catchain_consensus_description)
 endif()
 
 #[[ FIXME:

@@ -6,19 +6,23 @@ endif()
 
 set(TON_CRYPTO_SOURCE
   Ed25519.cpp
+
   common/bigint.cpp
   common/refcnt.cpp
   common/refint.cpp
   common/bigexp.cpp
   common/bitstring.cpp
   common/util.cpp
+
   ellcurve/Ed25519.cpp
   ellcurve/Fp25519.cpp
   ellcurve/Montgomery.cpp
   ellcurve/TwEdwards.cpp
+
   openssl/bignum.cpp
   openssl/residue.cpp
   openssl/rand.cpp
+
   vm/stack.cpp
   vm/atom.cpp
   vm/continuation.cpp
@@ -38,9 +42,11 @@ set(TON_CRYPTO_SOURCE
   vm/boc.cpp
   vm/utils.cpp
   vm/vm.cpp
+
   tl/tlblib.cpp
 
   Ed25519.h
+
   common/AtomicRef.h
   common/bigint.hpp
   common/bitstring.h

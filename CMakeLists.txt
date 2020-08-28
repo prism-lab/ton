@@ -1,10 +1,18 @@
 cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
 project(TON-Rocks
-        VERSION 0.5
-        LANGUAGES C CXX
+        VERSION 0.5 # Listing the version is nice here since it sets lots of useful variables
+        DESCRIPTION "Telegram Open Network (TON) maintained by ton-rocks team"
+        LANGUAGES C CXX # not sure if we use C, but let it be here
 )
+
+#TODO: do we need this option?
+# The POSITION_INDEPENDENT_CODE property
+# determines whether position independent executables or shared libraries will be created.
+# This property is True by default for SHARED and MODULE library targets and False otherwise.
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+#FIXME: Not sure if we can effort this because of openSSL licensing.
 #set(OPENSSL_USE_STATIC_LIBS TRUE)
 
 # Prevent in-source build
@@ -21,6 +29,18 @@ if (TON_REAL_BINARY_DIR STREQUAL TON_REAL_SOURCE_DIR)
   message("  cmake ..")
   message(FATAL_ERROR "In-source build failed.")
 endif()
+
+
+# Projects options:
+option(TON_USE_ROCKSDB    "Use \"ON\" to enable RocksDb."                     OFF )
+option(TON_USE_ABSEIL     "Use \"ON\" to enable Abseil."                      OFF )
+option(TON_USE_JEMALLOC   "Use \"ON\" to enable JeMalloc."                    OFF )
+option(TONLIB_ENABLE_JNI  "Use \"ON\" to enable JNI-compatible TonLib API."       )
+option(TON_USE_ASAN       "Use \"ON\" to enable AddressSanitizer."            OFF )
+option(TON_USE_TSAN       "Use \"ON\" to enable ThreadSanitizer."             OFF )
+option(TON_USE_UBSAN      "Use \"ON\" to enable UndefinedBehaviorSanitizer."  OFF )
+option(ENABLE_TESTS       "Use \"OFF\" to disable tests"                      ON  )
+
 
 
 #[[
@@ -54,7 +74,7 @@ int main() {
 }
 "  CRC32C_HAVE_SSE42)
 set(CMAKE_REQUIRED_FLAGS ${OLD_CMAKE_REQURED_FLAGS})
-##################################### это копипаст из crc32c/cmakelists.txt ###########################
+##################################### end это копипаст из crc32c/cmakelists.txt ###########################
 
 #################################### а этот кусок вообще из rocksdb/cmake
 if(NOT MSVC)
@@ -81,60 +101,8 @@ else()
 endif()
 ]]
 
-
-option(TON_USE_ROCKSDB    "Use \"ON\" to enable RocksDb."                     OFF )
-option(TON_USE_ABSEIL     "Use \"ON\" to enable Abseil."                      OFF )
-option(TON_USE_JEMALLOC   "Use \"ON\" to enable JeMalloc."                    OFF )
-option(TONLIB_ENABLE_JNI  "Use \"ON\" to enable JNI-compatible TonLib API."       )
-option(TON_USE_ASAN       "Use \"ON\" to enable AddressSanitizer."            OFF )
-option(TON_USE_TSAN       "Use \"ON\" to enable ThreadSanitizer."             OFF )
-option(TON_USE_UBSAN      "Use \"ON\" to enable UndefinedBehaviorSanitizer."  OFF )
-option(ENABLE_TESTS       "Use \"OFF\" to disable tests"                      ON  )
-
+#TODO: do we need this?
 set(TON_ARCH "native" CACHE STRING "Architecture, will be passed to -march=")
-
-#[[   #FIXME:
-if (TON_USE_ABSEIL)
-  message("Add abseil-cpp")
-  add_subdirectory(third-party/abseil-cpp EXCLUDE_FROM_ALL)
-  set(ABSL_FOUND 1)
-endif()
-]]
-
-# Эти две строки пришли из тона вместе с комментами.
-#add_subdirectory(third-party/libcuckoo EXCLUDE_FROM_ALL)
-#add_subdirectory(third-party/junction EXCLUDE_FROM_ALL)
-
-if (WIN32) #True on windows systems including win64.
-  message("Add wingetopt")
-  add_subdirectory(third-party/wingetopt EXCLUDE_FROM_ALL)
-  set(WINGETOPT_FOUND TRUE)
-  message(STATUS "Use wingetopt")
-endif()
-
-#[[ FIXME:
-set(CRC32C_BUILD_TESTS OFF CACHE BOOL "Build CRC32C's unit tests")
-set(CRC32C_BUILD_BENCHMARKS OFF CACHE BOOL "Build CRC32C's benchmarks")
-set(CRC32C_USE_GLOG OFF CACHE BOOL "Build CRC32C's tests with Google Logging")
-set(CRC32C_INSTALL OFF CACHE BOOL "Install CRC32C's header and library")
-message("Add crc32c")
-#add_subdirectory(third-party/crc32c EXCLUDE_FROM_ALL)
-set(CRC32C_FOUND 1)
-]]
-
-#[[ FIXME:
-if (TON_USE_ROCKSDB)
-  if (ANDROID) 
-    set(PORTABLE ON CACHE BOOL "portable")
-  endif()
-  set(WITH_GFLAGS OFF CACHE BOOL "build with GFlags")
-  set(WITH_TESTS OFF CACHE BOOL "build with tests")
-  set(WITH_TOOLS OFF CACHE BOOL "build with tools")
-  set(FAIL_ON_WARNINGS OFF CACHE BOOL "fail on warnings")
-  message("Add rocksdb")
-  #add_subdirectory(third-party/rocksdb EXCLUDE_FROM_ALL)
-endif()
-]]
 
 #[[ FIXME CHECKME LOVEME
 option(USE_COROUTINES "experimental support of coroutines" OFF)
@@ -146,15 +114,6 @@ if (USE_COROUTINES)
   endif()
 endif()
 
-option(USE_LIBRAPTORQ "use libraptorq for tests" OFF)
-if (USE_LIBRAPTORQ)
-  set(USE_LZ4 OFF CACHE BOOL "use lz4")
-  if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    set(CLANG_STDLIB "ON") # for libraptorq
-  endif()
-  message("Add libraptorq")
-  add_subdirectory(third-party/libraptorq EXCLUDE_FROM_ALL)
-endif()
 
 message("Add ton")
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake" ${CMAKE_MODULE_PATH})
@@ -352,6 +311,9 @@ if (LATEX_FOUND)
   add_latex_document(docs/tblkch.tex TARGET_NAME ton_blockchain_description)
   add_latex_document(docs/fiftbase.tex TARGET_NAME fift_basic_description)
   add_latex_document(docs/catchain.tex TARGET_NAME catchain_consensus_description)
+else()
+  message(" LATEX not found.")
+  message(" Docs will not be built")
 endif()
 
 #[[ FIXME:
@@ -367,15 +329,15 @@ endfunction(target_link_libraries_system)
 if (TON_USE_ROCKSDB)
   option(TDDB_USE_ROCKSDB "Use rockdb" ON)
 endif()
-
 ]]
 
 
 add_subdirectory(src)
+#FIXME:
 #add_subdirectory(apps)
 
 
-
+# Testing
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND ${ENABLE_TESTS})
   enable_testing()
   add_subdirectory(test)

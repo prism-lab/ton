@@ -28,9 +28,9 @@
 #include "block/block.h"
 #include "vm/boc.h"
 #include <iostream>
-#include "block-db.h"
+#include "../block-db.h"
 #include "block-auto.h"
-#include "block-parse.h"
+#include "../block-parse.h"
 #include "vm/cp0.h"
 #include <getopt.h>
 

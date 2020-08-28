@@ -1,36 +1,4 @@
 cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
-# There is no need for tdutils to generate mime type conversion.
-# tdutils is actually a git subrepo, so I define this statement here. Sorry.
-set(TDUTILS_MIME_TYPE OFF CACHE BOOL "Generate mime type conversion")
-if (NOT CMAKE_CROSSCOMPILING)
-    if (TDUTILS_MIME_TYPE)
-        set(TDMIME_AUTO tdmime_auto)
-    endif()
-    #add_custom_target(prepare_cross_compiling DEPENDS tl_generate_common tlb_generate_block gen_fif ${TDMIME_AUTO})
-endif()
-add_subdirectory(tdutils)
-
-
-
-
-#add_subdirectory(memprof)
-#add_subdirectory(tdactor)
-#add_subdirectory(tdnet)
-#add_subdirectory(tddb)
-#add_subdirectory(tdtl)
-#add_subdirectory(tl)
-#add_subdirectory(terminal)
-#add_subdirectory(keys)
-#add_subdirectory(networking)
-#add_subdirectory(crypto)
-#add_subdirectory(tonlib)
-#add_subdirectory(common)
-#add_subdirectory(tdfec)
-#add_subdirectory(keyring)
-#add_subdirectory(fec)
-#add_subdirectory(dht)
-#add_subdirectory(catchain)
-#add_subdirectory(validator-session)
-#add_subdirectory(validator)
-#add_subdirectory(storage)
+add_subdirectory(memprof)
+add_subdirectory(td)

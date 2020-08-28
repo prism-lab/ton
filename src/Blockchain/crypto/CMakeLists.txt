@@ -12,7 +12,8 @@ set(TON_CRYPTO_SOURCE
   common/refint.cpp
   common/bigexp.cpp
   common/bitstring.cpp
-  common/util.cpp
+        common/base64.cpp
+  common/adnl_id_encode.cpp
 
   ellcurve/Ed25519.cpp
   ellcurve/Fp25519.cpp
@@ -53,7 +54,8 @@ set(TON_CRYPTO_SOURCE
   common/refcnt.hpp
   common/refint.h
   common/bigexp.h
-  common/util.h
+        common/base64.h
+  common/adnl_id_encode.h
   common/linalloc.hpp
   common/promiseop.hpp
 

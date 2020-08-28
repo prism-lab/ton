@@ -20,7 +20,7 @@
 #include "block/block-parse.h"
 #include "block/block-auto.h"
 #include "ton/ton-shard.h"
-#include "common/util.h"
+#include "common/base64.h"
 #include "td/utils/crypto.h"
 
 namespace block {

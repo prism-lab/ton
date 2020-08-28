@@ -23,7 +23,7 @@
 #include "block/mc-config.h"
 #include "ton/ton-shard.h"
 #include "common/bigexp.h"
-#include "common/util.h"
+#include "common/base64.h"
 #include "td/utils/crypto.h"
 #include "td/utils/tl_storers.h"
 #include "td/utils/misc.h"

@@ -37,9 +37,4 @@ std::size_t buff_base64_decode(td::MutableSlice buffer, td::Slice data, bool all
 td::BufferSlice base64_decode(td::Slice encoded, bool allow_base64_url = true);
 std::string str_base64_decode(td::Slice encoded, bool allow_base64_url = true);
 
-//TODO: move it somewhere else
-td::Result<std::string> adnl_id_encode(td::Slice id, bool upper_case = false);
-std::string adnl_id_encode(Bits256 adnl_addr, bool upper_case = false);
-td::Result<Bits256> adnl_id_decode(td::Slice id);
-
 }  // namespace td

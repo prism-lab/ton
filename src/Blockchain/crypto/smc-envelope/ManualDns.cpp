@@ -30,7 +30,7 @@
 #include "block/block-auto.h"
 #include "block/block-parse.h"
 
-#include "common/util.h"
+#include "common/base64.h"
 
 namespace ton {
 td::StringBuilder& operator<<(td::StringBuilder& sb, const ManualDns::EntryData& data) {

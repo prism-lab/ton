@@ -18,16 +18,21 @@
 */
 #pragma once
 #include "common/refcnt.hpp"
+
 #include "vm/cells.h"
 #include "vm/cellslice.h"
 #include "vm/dict.h"
 #include "vm/boc.h"
 #include "vm/stack.hpp"
+
 #include <ostream>
+
 #include "tl/tlblib.hpp"
+
 #include "td/utils/bits.h"
 #include "td/utils/CancellationToken.h"
 #include "td/utils/StringBuilder.h"
+
 #include "ton/ton-types.h"
 
 namespace block {

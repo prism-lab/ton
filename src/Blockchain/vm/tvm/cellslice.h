@@ -16,4 +16,4 @@
 
     Copyright 2017-2020 Telegram Systems LLP
 */
-#include "vm/cells/CellSlice.h"
+#include "cells/CellSlice.h"

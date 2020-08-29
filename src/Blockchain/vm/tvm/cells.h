@@ -18,11 +18,11 @@
 */
 #pragma once
 
-#include "vm/cells/Cell.h"
-#include "vm/cells/CellBuilder.h"
-#include "vm/cells/DataCell.h"
-#include "vm/cells/UsageCell.h"
-#include "vm/cells/VirtualCell.h"
+#include "cells/Cell.h"
+#include "cells/CellBuilder.h"
+#include "cells/DataCell.h"
+#include "cells/UsageCell.h"
+#include "cells/VirtualCell.h"
 
 // H_i(cell) = H(cell_i)
 // cell.hash = sha256(

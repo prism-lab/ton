@@ -20,3 +20,24 @@ target_link_libraries(func PUBLIC ton_crypto src_parser)
 if (WINGETOPT_FOUND)
     target_link_libraries_system(func wingetopt)
 endif()
+
+
+# ---
+
+#FIXME:
+set(TON_CRYPTO_SOURCE
+
+        tl/tlblib.cpp
+
+        tl/tlbc-aux.h
+        tl/tlbc-data.h
+        tl/tlblib.hpp
+        )
+
+
+add_executable(tlbc tl/tlbc.cpp)
+target_include_directories(tlbc PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+target_link_libraries(tlbc PUBLIC ton_crypto src_parser)
+if (WINGETOPT_FOUND)
+    target_link_libraries_system(tlbc wingetopt)
+endif()

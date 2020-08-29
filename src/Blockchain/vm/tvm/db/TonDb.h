@@ -21,8 +21,8 @@
 #include "vm/cells.h"
 #include "vm/boc.h"
 #include "td/db/KeyValue.h"
-#include "vm/db/CellStorage.h"
-#include "vm/db/CellHashTable.h"
+#include "CellStorage.h"
+#include "CellHashTable.h"
 
 #include "td/utils/Slice.h"
 #include "td/utils/Status.h"

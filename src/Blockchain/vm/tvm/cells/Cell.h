@@ -20,11 +20,11 @@
 #include "common/refcnt.hpp"
 #include "common/bitstring.h"
 
-#include "vm/cells/CellHash.h"
-#include "vm/cells/CellTraits.h"
-#include "vm/cells/CellUsageTree.h"
-#include "vm/cells/LevelMask.h"
-#include "vm/cells/VirtualizationParameters.h"
+#include "CellHash.h"
+#include "CellTraits.h"
+#include "CellUsageTree.h"
+#include "LevelMask.h"
+#include "VirtualizationParameters.h"
 
 #include "td/utils/Status.h"
 

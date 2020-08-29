@@ -1,4 +1,6 @@
+cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
+#TODO: add these libs as git repos
 
 #[[   #FIXME:
 if (TON_USE_ABSEIL)

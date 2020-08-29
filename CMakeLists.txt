@@ -331,10 +331,15 @@ if (TON_USE_ROCKSDB)
 endif()
 ]]
 
-add_subdirectory(apps)
-add_subdirectory(src)
+#TODO: apps dir
+#add_subdirectory(apps)
+
+
+
+set(WINGETOPT_FOUND FALSE)
 add_subdirectory(third-party)
 
+add_subdirectory(src)
 
 
 # Testing

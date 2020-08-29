@@ -1,13 +1,15 @@
 cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
+#TODO: Tests.
 #TESTS
-add_executable(test-tdutils test-td-main.cpp ${TDUTILS_TEST_SOURCE})
-target_link_libraries(test-tdutils PRIVATE tdutils ${CMAKE_THREAD_LIBS_INIT} memprof ${JEMALLOC_LIBRARIES})
+
+#add_executable(test-tdutils test-td-main.cpp ${TDUTILS_TEST_SOURCE})
+#target_link_libraries(test-tdutils PRIVATE tdutils ${CMAKE_THREAD_LIBS_INIT} memprof ${JEMALLOC_LIBRARIES})
 #target_link_libraries_system(test-tdutils absl::base absl::container absl::hash )
 #target_link_libraries_system(test-tdutils libcuckoo)
 #target_include_directories(test-tdutils PRIVATE SYSTEM ${JUNCTION_ALL_INCLUDE_DIRS})
 #target_link_libraries(test-tdutils PRIVATE ${JUNCTION_ALL_LIBRARIES})
-add_test(test-tdutils test-tdutils)
+#add_test(test-tdutils test-tdutils)
 
 #[[
 add_executable(test-ed25519 test-td-main.cpp ${ED25519_TEST_SOURCE})

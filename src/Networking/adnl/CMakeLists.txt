@@ -81,10 +81,30 @@ set(ADNL_LITE_SOURCE
 
 #BEGIN internal
 if (NOT TON_ONLY_TONLIB)
-add_library(adnl STATIC ${ADNL_SOURCE})
 
+add_library(adnl STATIC ${ADNL_SOURCE})
 target_include_directories(adnl PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
-target_link_libraries(adnl PUBLIC tdactor ton_crypto tl_api tdnet tddb keys keyring )
+target_link_libraries(adnl
+        PUBLIC
+            tdactor
+            ton_crypto
+            tl_api
+            tdnet
+            tddb
+            keys
+            keyring
+)
+
+add_library(adnllite STATIC ${ADNL_LITE_SOURCE})
+target_include_directories(adnllite PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
+target_link_libraries(adnllite
+        PUBLIC
+            tdactor
+            ton_crypto
+            tl_lite_api
+            tdnet
+            keys
+)
 
 add_executable(adnl-proxy ${ADNL_PROXY_SOURCE})
 target_include_directories(adnl-proxy PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
@@ -102,7 +122,3 @@ target_link_libraries(adnltest PUBLIC adnl )
 endif()
 #END internal
 
-add_library(adnllite STATIC ${ADNL_LITE_SOURCE})
-
-target_include_directories(adnllite PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
-target_link_libraries(adnllite PUBLIC tdactor ton_crypto tl_lite_api tdnet keys )

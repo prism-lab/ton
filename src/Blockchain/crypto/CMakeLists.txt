@@ -12,7 +12,7 @@ set(TON_CRYPTO_SOURCE
   common/refint.cpp
   common/bigexp.cpp
   common/bitstring.cpp
-        common/base64.cpp
+  common/base64.cpp
   common/adnl_id_encode.cpp
 
   ellcurve/Ed25519.cpp
@@ -54,7 +54,7 @@ set(TON_CRYPTO_SOURCE
   common/refcnt.hpp
   common/refint.h
   common/bigexp.h
-        common/base64.h
+  common/base64.h
   common/adnl_id_encode.h
   common/linalloc.hpp
   common/promiseop.hpp
@@ -239,6 +239,8 @@ target_include_directories(tlbc PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_
 target_link_libraries(tlbc PUBLIC ton_crypto src_parser)
 if (WINGETOPT_FOUND)
   target_link_libraries_system(tlbc wingetopt)
+else()
+  message("something probably went wrong with tl/tlbc")
 endif()
 
 add_library(pow-miner-lib util/Miner.cpp util/Miner.h)

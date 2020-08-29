@@ -1,6 +1,11 @@
 //
 // Created by prism-lab on 29-Aug-20.
 //
+#include "base64.h"
+
+#include "td/utils/crypto.h"
+#include "td/utils/base64.h"
+
 
 namespace td {
 

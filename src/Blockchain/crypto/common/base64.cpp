@@ -20,9 +20,6 @@
 
 #include <limits>
 
-#include "td/utils/crypto.h"
-#include "td/utils/base64.h"
-
 namespace td {
 
 std::size_t compute_base64_encoded_size(size_t bindata_size) {

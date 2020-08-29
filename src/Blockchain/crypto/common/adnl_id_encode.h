@@ -1,6 +1,15 @@
 //
 // Created by prism-lab on 29-Aug-20.
 //
+#pragma once
+
+#include <string>
+
+#include "td/utils/Slice.h"
+#include "td/utils/Status.h"
+//#include "td/utils/buffer.h"
+
+#include "bitstring.h"
 
 namespace td {
 
